@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Recipes.Models.Recipe>
+
+@{
+  ViewData["Title"] = "Home Page";
+}
+
+<body>
+<head>
+  <link rel="stylesheet" href="~/css/csshomepage.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<div class="text-center">
+  <div class="container">
+    <h2 class="text-center font-italic mb-5"><em>Are you hungry? Take a look at our recipes</em></h2>
+    <div class="row">
+      @foreach (var item in Model)
+      {
+        <div class="col">
+          <div class="card" style="width: 350px; box-shadow: 0px 0px 30px 2px #000;">
+            <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap" style="width: 350px; height: 400px;">
+            <div class="card-body">
+              <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title) 🍴</h5>
+              <p class="card-text">@Html.DisplayFor(modelItem => item.Category)</p>
+              <p class="card-text">@Html.DisplayFor(modelItem => item.CreatedDate)</p>
+              <p class="card-text">@Html.DisplayFor(modelItem => item.Complexity)</p>
+              <p class="card-text">@Html.DisplayFor(modelItem => item.PreparationTime)</p>
+                            <a asp-controller="Recipes" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm btn-block">Let's cook!</a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+</body>
+
+

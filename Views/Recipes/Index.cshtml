@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Recipes.Models.Recipe>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 style="display: inline-block; margin-left: 10px;font-size: 36px;"><em>All Recipes</em></h1>
+</div>
+<head>
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" />
+</head>
+
+
+<p>
+    <div class="container"> 
+        <a asp-action="Create">
+            <button id="createButton" style="border-radius:10px;">Create New Recipe</button>
+        </a>
+
+        <div id="search" style="float: right;">
+            <form asp-controller="Recipes" asp-action="Index" method="get">
+                <p>
+
+                    <img src="~/assets/search.png" />
+                    <input type="text" name="SearchString" value="@ViewData["SearchString"]" style=" border-radius: 10px;  border: 1px solid rgb(135, 128, 128);" />
+
+                    <input type="submit" value="Filter"  />
+                   
+                    <a href="@Url.Action("ClearRecipes", "Recipes")">Reset</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+</p>
+
+<table class="table" style="background-color: #000;    opacity: 0.7;    border-radius:5px;    padding: 16px; color: white;">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayName("Image")
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]" asp-route-searchString="@ViewData["SearchString"]">
+                    @Html.DisplayNameFor(model => model.Title)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Complexity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreparationTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img src="@item.ImageUrl" class="oval-image" style="width: 200px; height: 200px; border-radius: 100px;" alt="Снимка" /></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Complexity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PreparationTime) <img src="~/assets/baseline_timer_black_24dp.png" style="margin-left: 10px;" />
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary" role="button" disabled>Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-secondary" role="button" disabled>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,9 @@
+﻿@model IngredientViewModel
+
+<li class="list-group-item @(Model.IsActive ? "active" : "")" onclick="addRemoveIngredient(@Model.Id)">
+    @Model.Title
+
+    @Html.HiddenFor(model => model.Id )
+    @Html.HiddenFor(model => model.Title)
+    @Html.HiddenFor(model => model.IsActive, new { data_ingredient_id = Model.Id })
+ </li>

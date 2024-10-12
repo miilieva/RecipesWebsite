@@ -1,0 +1,19 @@
+.btn-container {
+    background-color: red;
+}
+
+#createButton {
+    border-radius: 10px;
+    background-color: white;
+    width: 150px;
+    height: 50px;
+    border: 1px solid rgb(135, 128, 128);
+}
+
+#search {
+    border-radius: 10px;
+    background-color: white;
+    width: 150px;
+    height: 50px;
+    border: 1px solid rgb(135, 128, 128);
+}
